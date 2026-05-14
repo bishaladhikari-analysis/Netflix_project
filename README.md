@@ -51,7 +51,9 @@ SELECT
     COUNT(*)
 FROM netflix
 GROUP BY 1;
-same:-
+
+--unique results:-
+
 select 
 Distinct type,
 count(*) as total_number 
@@ -85,6 +87,33 @@ SELECT
     rating AS most_frequent_rating
 FROM RankedRatings
 WHERE rank = 1;
+```
+```sql
+SELECT 
+    type,
+    rating,
+    COUNT(*) AS total_count
+FROM Netflix
+GROUP BY type, rating
+ORDER BY type, total_count DESC;
+-- alternative 
+select 
+type,
+rating,
+count(*)
+from Netflix
+Group by 1,2
+order by 1,3 desc
+
+--alternative 
+select 
+type,
+rating,
+count(*),
+rank() over(partition by type order by count(*) desc) as ranking
+from Netflix
+Group by 1,2
+
 ```
 
 **Objective:** Identify the most frequently occurring rating for each type of content.
