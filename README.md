@@ -23,22 +23,22 @@ The data for this project is sourced from the Kaggle dataset:
 ## Schema
 
 ```sql
-DROP TABLE IF EXISTS netflix;
-CREATE TABLE netflix
-(
-    show_id      VARCHAR(5),
-    type         VARCHAR(10),
-    title        VARCHAR(250),
-    director     VARCHAR(550),
-    casts        VARCHAR(1050),
-    country      VARCHAR(550),
-    date_added   VARCHAR(55),
-    release_year INT,
-    rating       VARCHAR(15),
-    duration     VARCHAR(15),
-    listed_in    VARCHAR(250),
-    description  VARCHAR(550)
-);
+Drop Table if exists Netflix;
+create Table Netflix(
+
+show_id varchar(10) primary key,
+type varchar(10),	
+title varchar(150),
+director varchar(215),
+casts varchar(1000),
+country varchar(150),
+date_added varchar(50),
+release_year int,
+rating varchar(10),
+duration varchar(10),
+listed_in varchar(100),
+description varchar(300)
+)
 ```
 
 ## Business Problems and Solutions
@@ -51,6 +51,12 @@ SELECT
     COUNT(*)
 FROM netflix
 GROUP BY 1;
+same:-
+select 
+Distinct type,
+count(*) as total_number 
+from Netflix
+group by type
 ```
 
 **Objective:** Determine the distribution of content types on Netflix.
